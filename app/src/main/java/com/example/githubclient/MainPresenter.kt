@@ -6,19 +6,19 @@ class MainPresenter(private val view: MainView) {
     fun counterClick(id: Int) {
         when (id) {
             FIRST_ITEM -> {
-                setCounterValue(id)
+                setCounterValue(id, CountersModel.FIRST_ITEM)
             }
             SECOND_ITEM -> {
-                setCounterValue(id)
+                setCounterValue(id, CountersModel.SECOND_ITEM)
             }
             THIRD_ITEM -> {
-                setCounterValue(id)
+                setCounterValue(id, CountersModel.THIRD_ITEM)
             }
         }
     }
 
-    private fun setCounterValue(id: Int) {
-        val nextValue = model.next(id)
+    private fun setCounterValue(id: Int, modelCounterId: Int) {
+        val nextValue = model.next(modelCounterId)
         view.setButtonText(id, nextValue.toString())
     }
 
