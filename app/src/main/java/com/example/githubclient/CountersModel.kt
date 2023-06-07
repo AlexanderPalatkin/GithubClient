@@ -15,4 +15,10 @@ class CountersModel {
     fun set(index: Int, value: Int) {
         counters[index] = value
     }
+
+    companion object {
+        const val FIRST_ITEM = 0
+        const val SECOND_ITEM = 1
+        const val THIRD_ITEM = 2
+    }
 }
