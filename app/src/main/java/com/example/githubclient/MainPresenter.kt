@@ -1,23 +1,30 @@
 package com.example.githubclient
 
-class MainPresenter(val view: MainView) {
-    val model = CountersModel()
-    //Архитектурная ошибка. В качестве практического задания -- исправить
-    fun counterClick(id: Int){
-        when(id){
-            R.id.btn_counter1 -> {
-                val nextValue = model.next(0)
-                view.setButtonText(0, nextValue.toString())
+class MainPresenter(private val view: MainView) {
+    private val model = CountersModel()
+
+    fun counterClick(id: Int) {
+        when (id) {
+            FIRST_ITEM -> {
+                setCounterValue(id)
             }
-            R.id.btn_counter2 -> {
-                val nextValue = model.next(1)
-                view.setButtonText(1, nextValue.toString())
+            SECOND_ITEM -> {
+                setCounterValue(id)
             }
-            R.id.btn_counter3 -> {
-                val nextValue = model.next(2)
-                view.setButtonText(2, nextValue.toString())
+            THIRD_ITEM -> {
+                setCounterValue(id)
             }
         }
     }
 
+    private fun setCounterValue(id: Int) {
+        val nextValue = model.next(id)
+        view.setButtonText(id, nextValue.toString())
+    }
+
+    companion object {
+        const val FIRST_ITEM = 0
+        const val SECOND_ITEM = 1
+        const val THIRD_ITEM = 2
+    }
 }
