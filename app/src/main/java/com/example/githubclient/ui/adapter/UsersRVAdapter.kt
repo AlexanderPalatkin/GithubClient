@@ -6,17 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.githubclient.databinding.ItemUserBinding
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.list.UserItemView
+import com.example.githubclient.utils.INVALID_VALUE
 
-class UsersRVAdapter(val presenter: IUserListPresenter) : RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
+class UsersRVAdapter(val presenter: IUserListPresenter) :
+    RecyclerView.Adapter<UsersRVAdapter.ViewHolder>() {
 
-    inner class ViewHolder(val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root),
+    inner class ViewHolder(private val vb: ItemUserBinding) : RecyclerView.ViewHolder(vb.root),
         UserItemView {
-        override var pos = -1
+        override var pos = INVALID_VALUE
 
         override fun setLogin(text: String) {
             vb.tvLogin.text = text
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
@@ -32,9 +33,10 @@ class UsersRVAdapter(val presenter: IUserListPresenter) : RecyclerView.Adapter<U
             }
         }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = presenter.bindView(holder.apply {
-        pos = position
-    })
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        presenter.bindView(holder.apply {
+            pos = position
+        })
 
     override fun getItemCount() = presenter.getCount()
 }

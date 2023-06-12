@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.githubclient.App
 import com.example.githubclient.databinding.FragmentIndividualUserBinding
-import com.example.githubclient.mvp.model.GithubUsersRepo
 import com.example.githubclient.mvp.presenter.IndividualUserPresenter
-import com.example.githubclient.mvp.presenter.UsersPresenter
 import com.example.githubclient.mvp.view.IndividualUserView
 import com.example.githubclient.ui.activity.BackButtonListener
 import moxy.MvpAppCompatFragment
@@ -43,6 +40,4 @@ class IndividualUserFragment : MvpAppCompatFragment(), IndividualUserView, BackB
     }
 
     override fun backPressed() = presenter.backPressed()
-
-
 }
