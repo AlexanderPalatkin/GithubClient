@@ -4,7 +4,9 @@ import com.example.githubclient.ui.fragment.IndividualUserFragment
 import com.example.githubclient.ui.fragment.UsersFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen
 
-class AndroidScreens : IScreens {
+class AndroidScreens(private val data: String? = null) : IScreens {
+
     override fun users() = FragmentScreen { UsersFragment.newInstance() }
-    override fun individualUser() = FragmentScreen { IndividualUserFragment.newInstance() }
+    override fun individualUser() = FragmentScreen { IndividualUserFragment.newInstance(data!!) }
+
 }

@@ -9,6 +9,7 @@ import com.example.githubclient.databinding.FragmentIndividualUserBinding
 import com.example.githubclient.mvp.presenter.IndividualUserPresenter
 import com.example.githubclient.mvp.view.IndividualUserView
 import com.example.githubclient.ui.activity.BackButtonListener
+import com.example.githubclient.utils.KEY_LOGIN_INDIVIDUAL_USER
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
 
@@ -30,13 +31,25 @@ class IndividualUserFragment : MvpAppCompatFragment(), IndividualUserView, BackB
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        arguments?.let {
+            binding.tvIndividualUser.text = it.getString(KEY_LOGIN_INDIVIDUAL_USER, "")
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
     }
 
     companion object {
-        fun newInstance() = IndividualUserFragment()
+        fun newInstance(login: String): IndividualUserFragment {
+            val fragment = IndividualUserFragment()
+            val args = Bundle()
+            args.putString(KEY_LOGIN_INDIVIDUAL_USER, login)
+            fragment.arguments = args
+            return fragment
+        }
     }
 
     override fun backPressed() = presenter.backPressed()
