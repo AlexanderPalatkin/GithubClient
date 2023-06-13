@@ -1,8 +1,12 @@
 package com.example.githubclient
 
 import android.app.Application
+import com.example.githubclient.ui.fragment.IndividualUserFragment
+import com.example.githubclient.ui.fragment.UsersFragment
 import com.github.terrakok.cicerone.Cicerone
 import com.github.terrakok.cicerone.Router
+import com.github.terrakok.cicerone.Screen
+import com.github.terrakok.cicerone.androidx.FragmentScreen
 
 class App : Application() {
     companion object {
@@ -18,5 +22,12 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+    }
+
+    object Screens {
+        fun users() = FragmentScreen { UsersFragment.newInstance() }
+        fun individualUser(login: String): Screen {
+            return FragmentScreen { IndividualUserFragment.newInstance(login) }
+        }
     }
 }
