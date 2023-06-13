@@ -6,7 +6,6 @@ import com.example.githubclient.R
 import com.example.githubclient.databinding.ActivityMainBinding
 import com.example.githubclient.mvp.presenter.MainPresenter
 import com.example.githubclient.mvp.view.MainView
-import com.example.githubclient.navigation.AndroidScreens
 import com.github.terrakok.cicerone.androidx.AppNavigator
 import moxy.MvpAppCompatActivity
 import moxy.ktx.moxyPresenter
@@ -17,7 +16,7 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     private val presenter by moxyPresenter {
         MainPresenter(
             App.instance.router,
-            AndroidScreens()
+            App.Screens
         )
     }
 

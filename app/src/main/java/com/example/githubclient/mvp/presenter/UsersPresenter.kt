@@ -1,15 +1,19 @@
 package com.example.githubclient.mvp.presenter
 
+import com.example.githubclient.App
 import com.example.githubclient.mvp.model.GithubUser
 import com.example.githubclient.mvp.model.GithubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.UsersView
 import com.example.githubclient.mvp.view.list.UserItemView
-import com.example.githubclient.navigation.AndroidScreens
 import com.github.terrakok.cicerone.Router
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepo: GithubUsersRepo, private val router: Router) :
+class UsersPresenter(
+    private val usersRepo: GithubUsersRepo,
+    private val router: Router,
+    private val screens: App.Screens
+) :
     MvpPresenter<UsersView>() {
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
@@ -32,7 +36,7 @@ class UsersPresenter(private val usersRepo: GithubUsersRepo, private val router:
 
         usersListPresenter.itemClickListener = {
             val login = usersRepo.getUsers()[it.pos].login
-            router.navigateTo(AndroidScreens(login).individualUser())
+            router.navigateTo(screens.individualUser(login))
         }
     }
 
