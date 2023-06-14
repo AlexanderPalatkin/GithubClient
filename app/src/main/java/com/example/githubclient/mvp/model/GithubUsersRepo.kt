@@ -1,5 +1,7 @@
 package com.example.githubclient.mvp.model
 
+import io.reactivex.rxjava3.core.Observable
+
 class GithubUsersRepo {
     private val repositories = listOf(
         GithubUser("login1"),
@@ -9,7 +11,7 @@ class GithubUsersRepo {
         GithubUser("login5")
     )
 
-    fun getUsers(): List<GithubUser> {
-        return repositories
+    fun getUsers(): Observable<GithubUser> {
+        return Observable.fromIterable(repositories)
     }
 }
