@@ -1,11 +1,11 @@
 package com.example.githubclient.mvp.presenter
 
-import com.example.githubclient.App
 import com.example.githubclient.mvp.model.GithubUser
 import com.example.githubclient.mvp.model.GithubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.UsersView
 import com.example.githubclient.mvp.view.list.UserItemView
+import com.example.githubclient.navigation.IScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
@@ -13,7 +13,7 @@ import moxy.MvpPresenter
 class UsersPresenter(
     private val usersRepo: GithubUsersRepo,
     private val router: Router,
-    private val screens: App.Screens
+    private val screens: IScreens
 ) :
     MvpPresenter<UsersView>() {
     class UsersListPresenter : IUserListPresenter {

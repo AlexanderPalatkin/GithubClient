@@ -1,6 +1,7 @@
 package com.example.githubclient
 
 import android.app.Application
+import com.example.githubclient.navigation.IScreens
 import com.example.githubclient.ui.fragment.IndividualUserFragment
 import com.example.githubclient.ui.fragment.UsersFragment
 import com.github.terrakok.cicerone.Cicerone
@@ -24,9 +25,10 @@ class App : Application() {
         instance = this
     }
 
-    object Screens {
-        fun users() = FragmentScreen { UsersFragment.newInstance() }
-        fun individualUser(login: String): Screen {
+    object Screens : IScreens {
+        override fun users(): Screen = FragmentScreen { UsersFragment.newInstance() }
+
+        override fun individualUser(login: String): Screen {
             return FragmentScreen { IndividualUserFragment.newInstance(login) }
         }
     }
