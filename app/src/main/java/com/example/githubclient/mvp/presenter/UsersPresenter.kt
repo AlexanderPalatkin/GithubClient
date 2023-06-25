@@ -1,18 +1,20 @@
 package com.example.githubclient.mvp.presenter
 
-import com.example.githubclient.mvp.model.GithubUser
-import com.example.githubclient.mvp.model.GithubUsersRepo
+import com.example.githubclient.mvp.model.entity.GithubUser
+import com.example.githubclient.mvp.model.repo.IGithubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.UsersView
 import com.example.githubclient.mvp.view.list.UserItemView
 import com.example.githubclient.navigation.IScreens
 import com.github.terrakok.cicerone.Router
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
 
 class UsersPresenter(
-    private val usersRepo: GithubUsersRepo,
+    private val usersRepo: IGithubUsersRepo,
     private val router: Router,
+    private val uiScheduler: Scheduler,
     private val screens: IScreens
 ) :
     MvpPresenter<UsersView>() {
@@ -23,7 +25,12 @@ class UsersPresenter(
         override fun getCount() = users.size
         override fun bindView(view: UserItemView) {
             val user = users[view.pos]
-            view.setLogin(user.login)
+            user.login?.let {
+                view.setLogin(it)
+            }
+            user.avatarUrl?.let {
+                view.loadAvatar(it)
+            }
         }
     }
 
@@ -38,14 +45,14 @@ class UsersPresenter(
         loadData()
 
         usersListPresenter.itemClickListener = {
-            val login = usersListPresenter.users[it.pos].login
-            router.navigateTo(screens.individualUser(login))
+
         }
     }
 
     private fun loadData() {
-        disposable = usersRepo.getUsers().subscribe { user ->
-            usersListPresenter.users.add(user)
+        usersRepo.getUsers().observeOn(uiScheduler).subscribe { listGithubUsers ->
+            usersListPresenter.users.clear()
+            usersListPresenter.users.addAll(listGithubUsers)
             viewState.updateList()
         }
     }
