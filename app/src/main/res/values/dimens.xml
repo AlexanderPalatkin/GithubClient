@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="general_padding">16dp</dimen>
+    <dimen name="margin_start_tv_fragment_repository">16dp</dimen>
+    <dimen name="margin_start_tv_fragment_user">16dp</dimen>
+    <dimen name="padding_top_rv_fragment_user">16dp</dimen>
+    <dimen name="padding_bottom_rv_fragment_user">16dp</dimen>
+    <dimen name="padding_top_rv_fragment_users">16dp</dimen>
+    <dimen name="padding_bottom_rv_fragment_users">16dp</dimen>
+    <dimen name="layout_width_iv_item_user">50dp</dimen>
+    <dimen name="layout_height_iv_item_user">50dp</dimen>
+    <dimen name="layout_margin_iv_item_user">16dp</dimen>
+    <dimen name="margin_start_tv_item_user">16dp</dimen>
+    <dimen name="margin_start_tv_item_user_repository">16dp</dimen>
+    <dimen name="height_linear_layout_item_user_repository">50dp</dimen>
+    <dimen name="height_linear_layout_item_user">50dp</dimen>
 </resources>
