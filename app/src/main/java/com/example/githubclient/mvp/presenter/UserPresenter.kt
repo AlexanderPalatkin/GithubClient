@@ -39,7 +39,7 @@ class UserPresenter(
 
         loadData()
 
-        user.login?.let { viewState.setLogin(it) }
+        user.login.let { viewState.setLogin(it) }
 
         repositoriesListPresenter.itemClickListener = { itemView ->
             val repository = repositoriesListPresenter.repositories[itemView.pos]
@@ -48,7 +48,7 @@ class UserPresenter(
     }
 
     private fun loadData() {
-        repositoriesRepo.getRepositories(user.reposUrl.toString())
+        repositoriesRepo.getRepositories(user)
             .observeOn(uiScheduler)
             .subscribe({ repositories ->
                 repositoriesListPresenter.repositories.clear()

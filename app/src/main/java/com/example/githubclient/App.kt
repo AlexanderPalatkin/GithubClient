@@ -1,6 +1,7 @@
 package com.example.githubclient
 
 import android.app.Application
+import com.example.githubclient.mvp.model.entity.room.DataBase
 import com.example.githubclient.navigation.AndroidScreens
 import com.example.githubclient.navigation.IScreens
 import com.github.terrakok.cicerone.Cicerone
@@ -21,5 +22,6 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        DataBase.create(this)
     }
 }
