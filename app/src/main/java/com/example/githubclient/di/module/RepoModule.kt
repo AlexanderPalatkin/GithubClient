@@ -23,7 +23,6 @@ class RepoModule {
     fun database(app: App): DataBase =
         Room.databaseBuilder(app, DataBase::class.java, DataBase.DB_NAME).build()
 
-
     @Singleton
     @Provides
     fun usersRepo(

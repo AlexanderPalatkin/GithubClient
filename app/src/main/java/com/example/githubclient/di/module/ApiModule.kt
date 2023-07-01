@@ -17,13 +17,14 @@ import javax.inject.Singleton
 
 @Module
 class ApiModule {
+
     @Named("baseUrl")
     @Provides
     fun baseUrl(): String = "https://api.github.com/"
 
     @Singleton
     @Provides
-    fun gson() = GsonBuilder()
+    fun gson(): Gson = GsonBuilder()
         .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
         .excludeFieldsWithoutExposeAnnotation()
         .create()

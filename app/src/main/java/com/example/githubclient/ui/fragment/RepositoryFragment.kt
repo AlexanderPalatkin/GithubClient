@@ -10,10 +10,8 @@ import com.example.githubclient.mvp.presenter.RepositoryPresenter
 import com.example.githubclient.mvp.view.RepositoryView
 import com.example.githubclient.ui.activity.BackButtonListener
 import com.example.githubclient.utils.KEY_REPOSITORY_FRAGMENT
-import com.github.terrakok.cicerone.Router
 import moxy.MvpAppCompatFragment
 import moxy.ktx.moxyPresenter
-import javax.inject.Inject
 
 class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonListener {
 
@@ -21,16 +19,11 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
     private val binding
         get() = _binding!!
 
-    @Inject
-    lateinit var router: Router
-
     companion object {
         fun newInstance(repository: GithubRepository) = RepositoryFragment().apply {
             arguments = Bundle().apply {
                 putParcelable(KEY_REPOSITORY_FRAGMENT, repository)
             }
-
-            App.instance.appComponent.inject(this)
         }
     }
 
@@ -38,7 +31,9 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
         val repository =
             arguments?.getParcelable<GithubRepository>(KEY_REPOSITORY_FRAGMENT) as GithubRepository
 
-        RepositoryPresenter(repository, router)
+        RepositoryPresenter(repository).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(
