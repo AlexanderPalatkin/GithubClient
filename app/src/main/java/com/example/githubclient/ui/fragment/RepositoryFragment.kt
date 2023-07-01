@@ -31,7 +31,9 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
         val repository =
             arguments?.getParcelable<GithubRepository>(KEY_REPOSITORY_FRAGMENT) as GithubRepository
 
-        RepositoryPresenter(repository, App.instance.router)
+        RepositoryPresenter(repository).apply {
+            App.instance.appComponent.inject(this)
+        }
     }
 
     override fun onCreateView(

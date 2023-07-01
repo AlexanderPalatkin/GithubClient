@@ -10,14 +10,25 @@ import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
+import javax.inject.Inject
+import javax.inject.Named
 
-class UsersPresenter(
-    private val usersRepo: IGithubUsersRepo,
-    private val router: Router,
-    private val uiScheduler: Scheduler,
-    private val screens: IScreens
-) :
+class UsersPresenter :
     MvpPresenter<UsersView>() {
+
+    @Inject
+    lateinit var usersRepo: IGithubUsersRepo
+
+    @Inject
+    lateinit var router: Router
+
+    @Inject
+    lateinit var screens: IScreens
+
+    @Inject
+    @Named("mainThreadScheduler")
+    lateinit var mainThreadScheduler: Scheduler
+
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
 
@@ -25,7 +36,7 @@ class UsersPresenter(
         override fun getCount() = users.size
         override fun bindView(view: UserItemView) {
             val user = users[view.pos]
-            user.login?.let {
+            user.login.let {
                 view.setLogin(it)
             }
             user.avatarUrl?.let {
@@ -51,7 +62,7 @@ class UsersPresenter(
     }
 
     private fun loadData() {
-        usersRepo.getUsers().observeOn(uiScheduler).subscribe { listGithubUsers ->
+        usersRepo.getUsers().observeOn(mainThreadScheduler).subscribe { listGithubUsers ->
             usersListPresenter.users.clear()
             usersListPresenter.users.addAll(listGithubUsers)
             viewState.updateList()

@@ -14,7 +14,7 @@ object ApiHolder {
             .create()
 
         Retrofit.Builder()
-            .baseUrl("https://api.github.com")
+            .baseUrl("https://api.github.com/")
             .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
