@@ -10,14 +10,20 @@ import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import moxy.MvpPresenter
+import javax.inject.Inject
 
 class UsersPresenter(
-    private val usersRepo: IGithubUsersRepo,
-    private val router: Router,
-    private val uiScheduler: Scheduler,
-    private val screens: IScreens
+    private val uiScheduler: Scheduler
 ) :
     MvpPresenter<UsersView>() {
+
+    @Inject
+    lateinit var usersRepo: IGithubUsersRepo
+    @Inject
+    lateinit var router: Router
+    @Inject
+    lateinit var screens: IScreens
+
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
 
@@ -25,7 +31,7 @@ class UsersPresenter(
         override fun getCount() = users.size
         override fun bindView(view: UserItemView) {
             val user = users[view.pos]
-            user.login?.let {
+            user.login.let {
                 view.setLogin(it)
             }
             user.avatarUrl?.let {

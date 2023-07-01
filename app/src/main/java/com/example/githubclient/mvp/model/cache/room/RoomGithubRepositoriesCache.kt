@@ -9,7 +9,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
-class RoomGithubRepositoriesCache(val db: DataBase) : IGithubRepositoriesCache {
+class RoomGithubRepositoriesCache(private val db: DataBase) : IGithubRepositoriesCache {
     override fun getUserRepos(user: GithubUser): Single<List<GithubRepository>> =
         Single.fromCallable {
             val roomUser =
