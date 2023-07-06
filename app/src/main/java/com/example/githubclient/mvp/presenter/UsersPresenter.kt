@@ -1,5 +1,6 @@
 package com.example.githubclient.mvp.presenter
 
+import com.example.githubclient.di.module.user.IUserScopeContainer
 import com.example.githubclient.mvp.model.entity.GithubUser
 import com.example.githubclient.mvp.model.repo.IGithubUsersRepo
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
@@ -28,6 +29,9 @@ class UsersPresenter :
     @Inject
     @Named("mainThreadScheduler")
     lateinit var mainThreadScheduler: Scheduler
+
+    @Inject
+    lateinit var userScopeContainer: IUserScopeContainer
 
     class UsersListPresenter : IUserListPresenter {
         val users = mutableListOf<GithubUser>()
@@ -75,6 +79,7 @@ class UsersPresenter :
     }
 
     override fun onDestroy() {
+        userScopeContainer.releaseUserScope()
         super.onDestroy()
         disposable?.dispose()
     }

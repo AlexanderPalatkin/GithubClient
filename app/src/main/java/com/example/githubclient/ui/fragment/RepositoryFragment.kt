@@ -32,7 +32,7 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
             arguments?.getParcelable<GithubRepository>(KEY_REPOSITORY_FRAGMENT) as GithubRepository
 
         RepositoryPresenter(repository).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.repositorySubcomponent?.inject(this)
         }
     }
 

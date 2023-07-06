@@ -27,7 +27,7 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
         UserPresenter(
             user
         ).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.initRepositorySubcomponent()?.inject(this)
         }
     }
 

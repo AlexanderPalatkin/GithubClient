@@ -1,5 +1,6 @@
 package com.example.githubclient.mvp.presenter
 
+import com.example.githubclient.di.module.repository.IRepositoryScopeContainer
 import com.example.githubclient.mvp.model.entity.GithubRepository
 import com.example.githubclient.mvp.model.entity.GithubUser
 import com.example.githubclient.mvp.model.entity.room.DataBase
@@ -30,6 +31,9 @@ class UserPresenter(private val user: GithubUser) : MvpPresenter<UserView>() {
     @Inject
     @Named("mainThreadScheduler")
     lateinit var mainThreadScheduler: Scheduler
+
+    @Inject
+    lateinit var repositoryScopeContainer: IRepositoryScopeContainer
 
     class RepositoriesListPresenter : IRepositoryListPresenter {
         val repositories = mutableListOf<GithubRepository>()
@@ -75,5 +79,10 @@ class UserPresenter(private val user: GithubUser) : MvpPresenter<UserView>() {
     fun backPressed(): Boolean {
         router.exit()
         return true
+    }
+
+    override fun onDestroy() {
+        repositoryScopeContainer.releaseRepositoryScope()
+        super.onDestroy()
     }
 }

@@ -28,6 +28,7 @@ class UsersRVAdapter(val presenter: IUserListPresenter) :
         override fun loadAvatar(url: String) {
             imageLoader.loadInto(url, vb.ivAvatar)
         }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
