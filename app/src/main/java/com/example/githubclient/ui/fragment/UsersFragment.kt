@@ -20,7 +20,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private var _vb: FragmentUsersBinding? = null
     private val vb get() = _vb!!
 
-    var userSubcomponent: UserSubcomponent? = null
+    private var userSubcomponent: UserSubcomponent? = null
     private lateinit var adapter: UsersRVAdapter
 
     val presenter: UsersPresenter by moxyPresenter {

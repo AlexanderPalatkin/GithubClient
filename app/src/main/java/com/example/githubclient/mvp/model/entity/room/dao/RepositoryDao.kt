@@ -6,31 +6,31 @@ import com.example.githubclient.mvp.model.entity.room.RoomGithubRepository
 @Dao
 interface RepositoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(user: RoomGithubRepository)
+    fun insert(repository: RoomGithubRepository)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(vararg users: RoomGithubRepository)
+    fun insert(vararg repositories: RoomGithubRepository)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(users: List<RoomGithubRepository>)
+    fun insert(repositories: List<RoomGithubRepository>)
 
     @Update
-    fun update(user: RoomGithubRepository)
+    fun update(repository: RoomGithubRepository)
 
     @Update
-    fun update(vararg users: RoomGithubRepository)
+    fun update(vararg repositories: RoomGithubRepository)
 
     @Update
-    fun update(users: List<RoomGithubRepository>)
+    fun update(repositories: List<RoomGithubRepository>)
 
     @Delete
-    fun delete(user: RoomGithubRepository)
+    fun delete(repository: RoomGithubRepository)
 
     @Delete
-    fun delete(vararg users: RoomGithubRepository)
+    fun delete(vararg repositories: RoomGithubRepository)
 
     @Delete
-    fun delete(users: List<RoomGithubRepository>)
+    fun delete(repositories: List<RoomGithubRepository>)
 
     @Query("SELECT * FROM RoomGithubRepository")
     fun getAll(): List<RoomGithubRepository>

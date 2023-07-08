@@ -8,25 +8,15 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:id="@+id/iv_avatar"
+        android:id="@+id/ivAvatarFollower"
         android:layout_width="@dimen/layout_width_iv_item_user"
         android:layout_height="@dimen/layout_height_iv_item_user"
         android:layout_margin="@dimen/layout_margin_iv_item_user" />
 
     <TextView
-        android:id="@+id/tv_login"
+        android:id="@+id/tvLoginFollower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_tv_item_user"
         tools:text="login" />
-    <Button
-        android:id="@+id/bRepositories"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Repo"/>
-    <Button
-        android:id="@+id/bFollowers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Follow"/>
 </LinearLayout>

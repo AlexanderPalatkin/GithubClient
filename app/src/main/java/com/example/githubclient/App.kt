@@ -4,12 +4,14 @@ import android.app.Application
 import com.example.githubclient.di.AppComponent
 import com.example.githubclient.di.DaggerAppComponent
 import com.example.githubclient.di.module.AppModule
+import com.example.githubclient.di.module.follower.FollowerSubcomponent
+import com.example.githubclient.di.module.follower.IFollowerScopeContainer
 import com.example.githubclient.di.module.repository.IRepositoryScopeContainer
 import com.example.githubclient.di.module.repository.RepositorySubcomponent
 import com.example.githubclient.di.module.user.IUserScopeContainer
 import com.example.githubclient.di.module.user.UserSubcomponent
 
-class App : Application(), IUserScopeContainer, IRepositoryScopeContainer {
+class App : Application(), IUserScopeContainer, IRepositoryScopeContainer, IFollowerScopeContainer {
     companion object {
         lateinit var instance: App
     }
@@ -21,6 +23,9 @@ class App : Application(), IUserScopeContainer, IRepositoryScopeContainer {
         private set
 
     var repositorySubcomponent: RepositorySubcomponent? = null
+        private set
+
+    var followerSubcomponent: FollowerSubcomponent? = null
         private set
 
     override fun onCreate() {
@@ -41,12 +46,20 @@ class App : Application(), IUserScopeContainer, IRepositoryScopeContainer {
         repositorySubcomponent = it
     }
 
+    fun initFollowerSubcomponent() = userSubcomponent?.followerSubcomponent().also {
+        followerSubcomponent = it
+    }
+
     override fun releaseUserScope() {
         userSubcomponent = null
     }
 
     override fun releaseRepositoryScope() {
         repositorySubcomponent = null
+    }
+
+    override fun releaseFollowerScope() {
+        followerSubcomponent = null
     }
 
 }
