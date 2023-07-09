@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.App
+import com.example.githubclient.R
 import com.example.githubclient.databinding.FragmentFollowersBinding
 import com.example.githubclient.di.module.follower.FollowerSubcomponent
 import com.example.githubclient.mvp.model.entity.GithubUser
@@ -67,7 +68,9 @@ class FollowersFragment : MvpAppCompatFragment(), FollowersView, BackButtonListe
     }
 
     override fun setLogin(text: String) {
-        binding.tvUserLogin.text = text
+        val followersString = getString(R.string.followers)
+        val userLoginText = "$text $followersString"
+        binding.tvUserLogin.text = userLoginText
     }
 
     override fun updateList() {

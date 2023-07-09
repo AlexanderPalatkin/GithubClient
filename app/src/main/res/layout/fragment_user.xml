@@ -8,13 +8,22 @@
         android:id="@+id/tv_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_start_tv_fragment_user"/>
+        android:layout_gravity="center"
+        android:textColor="@color/text_color_tv_user_login"
+        android:textSize="@dimen/tv_text_size_login"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_delimiter_height"
+        android:layout_marginTop="@dimen/view_Item_delimiter_margin_top"
+        android:background="@color/view_delimiter_background" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_user_repositories"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/padding_top_rv_fragment_user"
         android:clipToPadding="false"
+        android:paddingTop="@dimen/padding_top_rv_fragment_user"
         android:paddingBottom="@dimen/padding_bottom_rv_fragment_user" />
 </LinearLayout>

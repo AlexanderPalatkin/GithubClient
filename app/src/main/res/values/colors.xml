@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="text_color_tv_user_login">#FF19245C</color>
+    <color name="text_color_user_login">#FF3648A8</color>
+    <color name="background_tint_button_user">#FFAAB6FB</color>
+    <color name="text_color_user_repository">#FF3B467E</color>
+    <color name="text_color_info_repository">#323D73</color>
+    <color name="text_color_info_title_repository">#FF4E1E57</color>
+    <color name="view_delimiter_background">#000</color>
+
 </resources>
