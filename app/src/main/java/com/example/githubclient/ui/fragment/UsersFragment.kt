@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.App
 import com.example.githubclient.databinding.FragmentUsersBinding
+import com.example.githubclient.di.module.user.UserSubcomponent
 import com.example.githubclient.mvp.presenter.UsersPresenter
 import com.example.githubclient.mvp.view.UsersView
 import com.example.githubclient.ui.activity.BackButtonListener
@@ -19,12 +20,15 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     private var _vb: FragmentUsersBinding? = null
     private val vb get() = _vb!!
 
+    private var userSubcomponent: UserSubcomponent? = null
+    private lateinit var adapter: UsersRVAdapter
+
     val presenter: UsersPresenter by moxyPresenter {
         UsersPresenter().apply {
-            App.instance.appComponent.inject(this)
+            userSubcomponent = App.instance.initUserSubcomponent()
+            userSubcomponent?.inject(this)
         }
     }
-    private lateinit var adapter: UsersRVAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +46,7 @@ class UsersFragment : MvpAppCompatFragment(), UsersView, BackButtonListener {
     override fun init() {
         vb.rvUsers.layoutManager = LinearLayoutManager(context)
         adapter = UsersRVAdapter(presenter.usersListPresenter).apply {
-            App.instance.appComponent.inject(this)
+            userSubcomponent?.inject(this)
         }
         vb.rvUsers.adapter = adapter
     }

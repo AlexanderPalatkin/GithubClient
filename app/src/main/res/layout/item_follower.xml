@@ -9,7 +9,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/ivAvatar"
+        android:id="@+id/ivAvatarFollower"
         android:layout_width="@dimen/layout_width_iv_item_user"
         android:layout_height="@dimen/layout_height_iv_item_user"
         android:layout_margin="@dimen/layout_margin_iv_item_user"
@@ -19,44 +19,16 @@
         app:srcCompat="@drawable/user_avatar" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLogin"
+        android:id="@+id/tvLoginFollower"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_start_tv_item_user"
         android:textColor="@color/text_color_user_login"
         android:textSize="@dimen/text_size_user_login"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/barrier"
-        app:layout_constraintStart_toEndOf="@id/ivAvatar"
+        app:layout_constraintLeft_toRightOf="@id/ivAvatarFollower"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="login" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bRepositories"
-        android:layout_width="@dimen/width_button_user"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_end_button_user"
-        android:backgroundTint="@color/background_tint_button_user"
-        android:text="@string/text_button_repositories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="start"
-        app:constraint_referenced_ids="bRepositories" />
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/bFollowers"
-        android:layout_width="@dimen/width_button_user"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/margin_end_button_user"
-        android:backgroundTint="@color/background_tint_button_user"
-        android:text="@string/text_button_followers"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/barrier"
-        app:layout_constraintTop_toBottomOf="@id/bRepositories" />
 
     <View
         android:layout_width="match_parent"
@@ -65,5 +37,3 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-

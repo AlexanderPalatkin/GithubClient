@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_login"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvUserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -20,10 +20,9 @@
         android:background="@color/view_delimiter_background" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_user_repositories"
+        android:id="@+id/rvUserFollowers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingTop="@dimen/padding_top_rv_fragment_user"
-        android:paddingBottom="@dimen/padding_bottom_rv_fragment_user" />
+        android:paddingTop="@dimen/padding_top_rv_fragment_user" />
 </LinearLayout>

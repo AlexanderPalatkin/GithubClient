@@ -14,4 +14,14 @@
     <dimen name="margin_start_tv_item_user_repository">16dp</dimen>
     <dimen name="height_linear_layout_item_user_repository">50dp</dimen>
     <dimen name="height_linear_layout_item_user">50dp</dimen>
+    <dimen name="view_Item_delimiter_margin_top">15dp</dimen>
+    <dimen name="view_item_delimiter_height">1dp</dimen>
+    <dimen name="text_size_user_login">18sp</dimen>
+    <dimen name="width_button_user">150dp</dimen>
+    <dimen name="margin_end_button_user">16dp</dimen>
+    <dimen name="text_size_user_repository">18sp</dimen>
+    <dimen name="text_size_info_repository">20sp</dimen>
+    <dimen name="text_size_info_title_repository">22sp</dimen>
+    <dimen name="tv_text_size_login">24sp</dimen>
+    <dimen name="tv_margin_top_id">24dp</dimen>
 </resources>

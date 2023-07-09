@@ -5,10 +5,10 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_users"
+        android:id="@+id/rvUsers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingTop="@dimen/padding_top_rv_fragment_users"
         android:clipToPadding="false"
+        android:paddingTop="@dimen/padding_top_rv_fragment_users"
         android:paddingBottom="@dimen/padding_bottom_rv_fragment_users" />
 </LinearLayout>

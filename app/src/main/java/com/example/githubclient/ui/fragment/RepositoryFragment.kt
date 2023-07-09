@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.githubclient.App
+import com.example.githubclient.R
 import com.example.githubclient.databinding.FragmentRepositoryBinding
 import com.example.githubclient.mvp.model.entity.GithubRepository
 import com.example.githubclient.mvp.presenter.RepositoryPresenter
@@ -32,7 +33,7 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
             arguments?.getParcelable<GithubRepository>(KEY_REPOSITORY_FRAGMENT) as GithubRepository
 
         RepositoryPresenter(repository).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.repositorySubcomponent?.inject(this)
         }
     }
 
@@ -53,7 +54,9 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
     override fun init() {}
 
     override fun setId(text: String) {
-        binding.tvId.text = text
+        val repositoryIdString = getString(R.string.repository_id)
+        val repositoryIdText = "$repositoryIdString $text"
+        binding.tvId.text = repositoryIdText
     }
 
     override fun setTitle(text: String) {
@@ -61,7 +64,9 @@ class RepositoryFragment : MvpAppCompatFragment(), RepositoryView, BackButtonLis
     }
 
     override fun setForksCount(text: String) {
-        binding.tvForksCount.text = text
+        val repositoryForksCountString = getString(R.string.repository_forks_count)
+        val repositoryForksCountText = "$repositoryForksCountString $text"
+        binding.tvForksCount.text = repositoryForksCountText
     }
 
     override fun backPressed() = presenter.backPressed()

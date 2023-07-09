@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.githubclient.App
+import com.example.githubclient.R
 import com.example.githubclient.databinding.FragmentUserBinding
 import com.example.githubclient.mvp.model.entity.GithubUser
 import com.example.githubclient.mvp.presenter.UserPresenter
@@ -27,7 +28,7 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
         UserPresenter(
             user
         ).apply {
-            App.instance.appComponent.inject(this)
+            App.instance.initRepositorySubcomponent()?.inject(this)
         }
     }
 
@@ -62,7 +63,9 @@ class UserFragment : MvpAppCompatFragment(), UserView, BackButtonListener {
     }
 
     override fun setLogin(text: String) {
-        binding.tvLogin.text = text
+        val repositoriesString = getString(R.string.repositories)
+        val userLoginText = "$text $repositoriesString"
+        binding.tvLogin.text = userLoginText
     }
 
     override fun updateList() {

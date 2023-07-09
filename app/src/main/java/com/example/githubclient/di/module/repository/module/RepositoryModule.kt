@@ -1,39 +1,26 @@
-package com.example.githubclient.di.module
+package com.example.githubclient.di.module.repository.module
 
-import androidx.room.Room
 import com.example.githubclient.App
+import com.example.githubclient.di.module.repository.IRepositoryScopeContainer
+import com.example.githubclient.di.module.repository.RepositoryScope
 import com.example.githubclient.mvp.model.api.IDataSource
 import com.example.githubclient.mvp.model.cache.IGithubRepositoriesCache
-import com.example.githubclient.mvp.model.cache.IGithubUsersCache
+import com.example.githubclient.mvp.model.cache.room.RoomGithubRepositoriesCache
 import com.example.githubclient.mvp.model.entity.room.DataBase
 import com.example.githubclient.mvp.model.repo.IGithubRepositoriesRepo
-import com.example.githubclient.mvp.model.repo.IGithubUsersRepo
 import com.example.githubclient.mvp.model.repo.retrofit.RetrofitGithubRepositoriesRepo
-import com.example.githubclient.mvp.model.repo.retrofit.RetrofitGithubUsersRepo
 import com.example.githubclient.mvp.network.INetworkStatus
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
-class RepoModule {
+class RepositoryModule {
 
-    @Singleton
     @Provides
-    fun database(app: App): DataBase =
-        Room.databaseBuilder(app, DataBase::class.java, DataBase.DB_NAME).build()
+    fun repositoriesCache(dataBase: DataBase): IGithubRepositoriesCache =
+        RoomGithubRepositoriesCache(dataBase)
 
-    @Singleton
-    @Provides
-    fun usersRepo(
-        api: IDataSource, networkStatus: INetworkStatus, cache:
-        IGithubUsersCache
-    ): IGithubUsersRepo = RetrofitGithubUsersRepo(
-        api,
-        networkStatus, cache
-    )
-
-    @Singleton
+    @RepositoryScope
     @Provides
     fun repositoriesRepo(
         api: IDataSource, networkStatus: INetworkStatus, cache:
@@ -42,4 +29,8 @@ class RepoModule {
         api,
         networkStatus, cache
     )
+
+    @RepositoryScope
+    @Provides
+    fun scopeContainer(app: App): IRepositoryScopeContainer = app
 }

@@ -1,16 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/height_linear_layout_item_user_repository"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:foreground="?attr/selectableItemBackground"
     android:gravity="center_vertical"
     android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tv_repository"
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivRepository"
+        android:layout_width="@dimen/layout_width_iv_item_user"
+        android:layout_height="@dimen/layout_height_iv_item_user"
+        android:layout_margin="@dimen/layout_margin_iv_item_user"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_repository" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvRepository"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/margin_start_tv_item_user_repository"
-        tools:text = "login"/>
-</LinearLayout>
+        android:textColor="@color/text_color_user_repository"
+        android:textSize="@dimen/text_size_user_repository"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivRepository"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/tv_text_repository" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/view_item_delimiter_height"
+        android:background="@color/view_delimiter_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.example.githubclient.mvp.model.api
 
+import com.example.githubclient.mvp.model.entity.GithubFollower
 import com.example.githubclient.mvp.model.entity.GithubRepository
 import com.example.githubclient.mvp.model.entity.GithubUser
 import io.reactivex.rxjava3.core.Single
@@ -12,4 +13,7 @@ interface IDataSource {
 
     @GET
     fun getRepositories(@Url url: String): Single<List<GithubRepository>>
+
+    @GET
+    fun getFollowers(@Url url: String): Single<List<GithubFollower>>
 }
