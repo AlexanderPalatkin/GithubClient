@@ -3,7 +3,6 @@ package com.example.githubclient.mvp.presenter
 import com.example.githubclient.di.module.repository.IRepositoryScopeContainer
 import com.example.githubclient.mvp.model.entity.GithubRepository
 import com.example.githubclient.mvp.model.entity.GithubUser
-import com.example.githubclient.mvp.model.entity.room.DataBase
 import com.example.githubclient.mvp.model.repo.IGithubRepositoriesRepo
 import com.example.githubclient.mvp.presenter.list.IRepositoryListPresenter
 import com.example.githubclient.mvp.view.UserView
@@ -16,8 +15,6 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class UserPresenter(private val user: GithubUser) : MvpPresenter<UserView>() {
-    @Inject
-    lateinit var dataBase: DataBase
 
     @Inject
     lateinit var router: Router
