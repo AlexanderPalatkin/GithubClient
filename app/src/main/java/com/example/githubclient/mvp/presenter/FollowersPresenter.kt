@@ -3,7 +3,6 @@ package com.example.githubclient.mvp.presenter
 import com.example.githubclient.di.module.follower.IFollowerScopeContainer
 import com.example.githubclient.mvp.model.entity.GithubFollower
 import com.example.githubclient.mvp.model.entity.GithubUser
-import com.example.githubclient.mvp.model.entity.room.DataBase
 import com.example.githubclient.mvp.model.repo.IGithubFollowersRepo
 import com.example.githubclient.mvp.presenter.list.IFollowersListPresenter
 import com.example.githubclient.mvp.view.FollowersView
@@ -16,8 +15,6 @@ import javax.inject.Inject
 import javax.inject.Named
 
 class FollowersPresenter(private val user: GithubUser) : MvpPresenter<FollowersView>() {
-    @Inject
-    lateinit var dataBase: DataBase
 
     @Inject
     lateinit var router: Router
