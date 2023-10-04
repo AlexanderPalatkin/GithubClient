@@ -12,7 +12,7 @@ class RepositoryPresenter(private val githubRepository: GithubRepository) :
     @Inject
     lateinit var router: Router
 
-    override fun onFirstViewAttach() {
+    public override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         viewState.init()
         viewState.setId(githubRepository.id)
