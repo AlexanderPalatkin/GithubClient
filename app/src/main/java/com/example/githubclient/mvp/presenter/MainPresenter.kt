@@ -11,7 +11,7 @@ class MainPresenter :
     @Inject lateinit var router: Router
     @Inject lateinit var screens: IScreens
 
-    override fun onFirstViewAttach() {
+    public override fun onFirstViewAttach() {
         super.onFirstViewAttach()
         router.replaceScreen(screens.users())
     }
